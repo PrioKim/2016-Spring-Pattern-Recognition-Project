@@ -1,0 +1,187 @@
+***   final report-(2x2.128).txt  ***
+
+
+
+	- test image:		Lena.raw
+	- image size:		512 by 512
+	- block size:		2 by 2
+	- block length:		 4
+	- codebook level:		128
+	- codebook:		ocb-(2X2.128)
+	- display image::		lena-(2x2.128).pgm
+*   mean square error & signal to noise ratio
+
+
+    - difference during computation
+      - mse1 = 36402956.000000
+      - snr1 =   -27.480562
+
+    - difference between original image and coded image
+
+      - mse2 = 36445096.000000
+      - snr2 =   -27.485588
+
+    - difference between original image and display image
+
+
+      - mse3 = 21333.621094
+      - snr3 =     4.840158
+
+
+
+
+*   number of blocks in each code
+
+
+ 65536
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+    - total number of blocks:    65536
+
+
+
+*  statistics of pixels
+
+
+    - number of greater:   121514
+    - number of smaller:        0
+    - number of within:    140630

@@ -1,0 +1,99 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: #666;
+}
+
+body {
+  background: #eef0ff;
+}
+
+.title {
+  font-size: 32px;
+  color: rgba(45,95,118,0.5);
+  margin: 20px;
+}
+
+.card {
+  display: inline-block;
+  max-height: 220px;
+  overflow: hidden;
+}
+
+.donut {
+  margin: auto;
+  text-align: center;
+}
+
+.donut-section {
+  transition: all 300ms ease;
+}
+
+.limited .donut-section:hover {
+  stroke-width: 2px;
+  stroke: rgba(45,95,118,0.5);
+}
+
+.entity-name {
+  text-transform: uppercase;
+  color: #666;
+  margin-top: -2px;
+  font-size: 14px;
+}
+
+.info {
+  display: inline-block;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: -150px;
+  left: 0;
+  pointer-events: none;
+}
+
+.info > .entity-count {
+  line-height: 16px;
+  margin-top: 8px;
+  font-size: 24px;
+  color: #222 !important;
+  font-weight: bold;
+}
+
+.info > .entity-lic {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.dark {
+  color: #000;
+  font-weight: bold;
+}
+
+.entity-icon {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.entity-node {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHlJREFUeNpiYBgFo2CAASO6wMQJE/7T2tL8ggJGnJK0dgC6+UwDHQUs+CT1pu2kWmhcynJnJNkB+DSSAvB5ZMCjYNQBow4YdcCoAwZ3XUDt+oBkB1CjHhiaUUCPVhHOJhk5rRqim1uDMQoYKfEtVRqho2AUDDQACDAAIEYgQjsVOk8AAAAASUVORK5CYII=');
+}
+
+.entity-ftp {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALNJREFUeNpiYBgFIx0wogtMnDDhPykG5BcUMFLVRaQ4gFTHYgNMAx0FLPQMMaKijRrBSoqDBzwKRh1AVCLUm7YTJd4uZbkzoothEf8AxIVAsQVUyQUgw7HxQRZikwOKBwCZ84F4AVWiAGQRNl/TrRxA9yURUQaOApoXRJQ6dsBzwWhJOOoAloFIB1QFlBZOAx4FjNT0OSkFENWDntyoYKFm3BLSQ9UQonkI0CMHjAIQAAgwANaAWeCvNWMPAAAAAElFTkSuQmCC');
+}
+
+.entity-dns {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALFJREFUeNpiYBgFIx0wogtMnDDhPz4N+QUFjMQYTLY5hDRSAyDbwTTQUcBCrEK9aTvJCplLWe6MVHEAMYaR4+gBj4JRBzAOdCKkKA9TomY0DRCVBoiJd1gck6KWagUJsjwpakfTAEl1ASn5n9yygqT8T0o5QIxapoFukLAQG6RzYTSbJoo4tmxISC1JiRCkCV0jNjFS1Q7tXIArtZOilio12fBtFeMLBWp1TEYBDAAEGAB6MHfmDJZS4AAAAABJRU5ErkJggg==');
+}
+
+.entity-interface {
+	background-image: url('data:image/gif;base64,R0lGODlhIAAgAJECACyWupGQkP///wAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMwNjcgNzkuMTU3NzQ3LCAyMDE1LzAzLzMwLTIzOjQwOjQyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTRDOTAwMjIyQkM5MTFFNTlCREFEN0UwQ0E0NUVEQzMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTRDOTAwMjMyQkM5MTFFNTlCREFEN0UwQ0E0NUVEQzMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNEM5MDAyMDJCQzkxMUU1OUJEQUQ3RTBDQTQ1RURDMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNEM5MDAyMTJCQzkxMUU1OUJEQUQ3RTBDQTQ1RURDMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAIALAAAAAAgACAAAAJllI+py+0Po5y02ruC3rz7MIGIaJCC+aDmGibsgTrqSEPAjZcCnp8RgAD6hAZhbEHc6ZLGX3D59NmiIKbOxmtmm5jj9eKVUrbB7DhaRDsPVvbZDU9P2vL6z8zGY/b8vv8PGCjYUAAAOw==');
+}
+
+.entity-rabbit {
+	background-image: url('../image/rabbit.jpg');
+}
