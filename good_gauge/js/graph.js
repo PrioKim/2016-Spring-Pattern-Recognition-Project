@@ -285,6 +285,15 @@ function LoadFile() {
     reqHttpData("../../main/php/parsing_result.txt", onLoadHttpData);
 }
 
+function roundXL(n, digits) {
+  if (digits >= 0) return parseFloat(n.toFixed(digits)); // 소수부 반올림
+
+  digits = Math.pow(10, digits); // 정수부 반올림
+  var t = Math.round(n * digits) / digits;
+
+  return parseFloat(t.toFixed(0));
+}
+
 function onLoadHttpData() {
     if( httpRequest.readyState != 4 ||httpRequest.status != 200 ) {
         var message = "Status - ReadyState:" + httpRequest.readyState
@@ -304,6 +313,12 @@ function onLoadHttpData() {
     // entity2
     // prob[0]
     var fill = Number(prob[0]) * 100;
+    var n_fill = 100 - fill;
+    var orig_fill = fill;
+    var n_orig_fill = n_fill;
+    fill = roundXL(fill, 1);
+    n_fill = roundXL(n_fill, 1);
+
 
     var test2 = new Donut({
       bindTo: '#entity2 > .donut',
@@ -313,35 +328,37 @@ function onLoadHttpData() {
       startAngle: 0,
       endAngle: 360
     });
-    //var fill = Number(probability[0]) * 100;
-    //var non_fill = 100 - fill;
 
-    d = [fill , 100 - fill];
+
+    d = [fill , n_fill];
     test2.load({data: d});
+    fill = fill + "%";
+    n_fill = n_fill + '%';
+    orig_fill = orig_fill + "%";
+    n_orig_fill = n_orig_fill + '%';
 
     $('#entity2 .donut-section').hover(
       function() {
         if ($(this).attr('fill') === '#ffffff') {
-          $('#entity2 .entity-lic').html('<span class="dark">73 Available</span> &nbsp; 15%');
-          $('#entity2 .entity-count').html('73');
+          $('#entity2 .entity-lic').html('<span class="dark">Not Dog Prob</span> &nbsp; ' + n_orig_fill);
+          $('#entity2 .entity-count').html(n_fill);
         }
         else {
-          $('#entity2 .entity-lic').html('<span class="dark">427 Used</span> &nbsp; 85%');
-          $('#entity2 .entity-count').html('427');
+          $('#entity2 .entity-lic').html('<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill);
+          $('#entity2 .entity-count').html(fill);
         }
       }, function() {
-        $('#entity2 .entity-lic').html('427 of 500 Allowed');
-        $('#entity2 .entity-count').html('427');
+        $('#entity2 .entity-lic').html('<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill);
+        $('#entity2 .entity-count').html(fill);
       }
   );
-  fill = fill + "%";
-  document.getElementById("dog").innerHTML = fill;
+
+  document.getElementById("dog-count").innerHTML = fill;
+  document.getElementById("dog-lic").innerHTML = '<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill;
 
 }
 
-
 LoadFile();
-
 
 var test1 = new Donut({
   bindTo: '#entity1 > .donut',

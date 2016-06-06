@@ -30,21 +30,18 @@
                           }
                      }
                  }
-            } else {
-                 echo file_errmsg($_FILES['img']['error']);
             }
         //    print_r($_FILES);
 
-            $bazel_home = "";
-            $bazel_bin = "bazel-bin/tensorflow/examples/label_image/label_image";
+            $bazel_bin = "sudo ./label_image";
             $arg_graph = ' --graph=/tmp/output_graph.pb';
             $arg_labels = ' --labels=/tmp/output_labels.txt';
 
             $arg_output_layer = ' --output_layer=final_result';
-            $arg_image = ' --image=/root/image_crawl/dir/Elephant-PNG-Image1.png';
+            $arg_image = ' --image=' . $uploaddir . $filename;
             $tensor_result_file = "tensor_result";
 
-            $cmd = $bazel_bin . $arg_graph . $arg_labels . $arg_output_layer . $arg_image . " &> " . $tensor_result_file;
+            $cmd = $bazel_bin . $arg_graph . $arg_labels . $arg_output_layer . $arg_image . " 2> " . $tensor_result_file;
 
             /*
             if(system($cmd, $output)) {
@@ -52,9 +49,9 @@
             }
             */
 
-            if(system("ls > output", $output)) {
-                echo "<br> $output <br>";
-            }
+            //system($cmd, $output);
+            exec($cmd);
+
 
         //// parsing result
             $parsing_result_file = "parsing_result.txt";
@@ -64,10 +61,20 @@
             $i = 0;
             while(!feof($fpr)) {
                 $line = fgets($fpr);
-
+                $parse_buf = [];
                 if($i > 93){
                     $parse_buf = explode(" ", $line); // I tensorflow/examples/label_image/main.cc:207] dog dir (0): 0.926837
-                    $write_buf = $parse_buf[5];
+                    if(stristr($parse_buf[5], 'e') === FALSE) { // I tensorflow/examples/label_image/main.cc:207] tiger dir (2): 8.06392e-05
+                        if (floatval($parse_buf[5]) < 0.00001){ // I tensorflow/examples/label_image/main.cc:207] rabbit dir (4): 0.000114719
+                            $write_buf = '0.00001';
+                        }
+                        else{
+                            $write_buf = $parse_buf[5];
+                        }
+                    }
+                    else { // I tensorflow/examples/label_image/main.cc:207] tiger dir (2): 8.06392e-05
+                        $write_buf = '0.00001';
+                    }
                     fputs($fpw, $write_buf);
                 }
                 $i++;
