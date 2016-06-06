@@ -27,9 +27,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
-    <script src="js/graph.js"></script>
+    <!-- <script src="../good_gauge/js/graph.js"></script> -->
 </head>
 
 <body>
@@ -67,7 +65,8 @@
                 <div class="btn btn-dark btn-lg">
                     <label for="img">Upload Your Animal Image</label>
                     <input type="file" id="img" name="img">
-            	    <button type="submit" class="btn btn-default" onclick="">Submit</button>
+            	    <!--<button type="submit" class="btn btn-default" onclick="return buttonReadFile()">Submit</button>-->
+                    <button type="submit" class="btn btn-default">Submit</button>
 	        	</div>
             </form>
         </div>

@@ -253,49 +253,94 @@ var donut_license_colors = d3.scale.ordinal()
   }
 })(window);
 
-var data_url = "210.107.232.118/main/php/parsing_result.txt";
-var html_file = "../graph.html";
+
+var httpRequest=null;
+
+function getHttpRequest() {
+    var httpReq = null;
+
+    try {
+        var httpReq = new XMLHttpRequest();
+    } catch(err) {
+        httpReq = null;
+    }
+    return httpReq;
+}
+
+function reqHttpData(url, callback) {
+    if( httpRequest == null ) {
+        httpRequest = getHttpRequest();
+        if( httpRequest == null )
+        return;
+    }
+
+    httpRequest.open("GET", url,true);
+    httpRequest.onreadystatechange = callback;
+    httpRequest.send(null);
+}
+
+var data_url = "../../main/php/parsing_result.txt";
 
 function LoadFile() {
-    var oFrame = document.getElementById("frmFile");
-    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-    while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-    var arrLines = strRawContents.split("\n");
-    alert("File " + oFrame.src + " has " + arrLines.length + " lines");
-    for (var i = 0; i < arrLines.length; i++) {
-        var curLine = arrLines[i];
-        alert("Line #" + (i + 1) + " is: '" + curLine + "'");
-    }
+    reqHttpData("../../main/php/parsing_result.txt", onLoadHttpData);
 }
-var test2 = new Donut({
-  bindTo: '#entity2 > .donut',
-  background: true,
-  thickness: 10,
-  offset: 1,
-  startAngle: 0,
-  endAngle: 360
-});
-var dataset = [427, 73];
 
-var d = [dataset[0],dataset[1]];
-test2.load({data: d});
+function onLoadHttpData() {
+    if( httpRequest.readyState != 4 ||httpRequest.status != 200 ) {
+        var message = "Status - ReadyState:" + httpRequest.readyState
+            + " / Status: " +httpRequest.status;
 
-$('#entity2 .donut-section').hover(
-  function() {
-    if ($(this).attr('fill') === '#ffffff') {
-      $('#entity2 .entity-lic').html('<span class="dark">73 Available</span> &nbsp; 15%');
-      $('#entity2 .entity-count').html('73');
+            $("#message").text(message);
+        return;
+
     }
-    else {
-      $('#entity2 .entity-lic').html('<span class="dark">427 Used</span> &nbsp; 85%');
-      $('#entity2 .entity-count').html('427');
-    }
-  }, function() {
-    $('#entity2 .entity-lic').html('427 of 500 Allowed');
-    $('#entity2 .entity-count').html('427');
-  }
-);
+    var fileText = httpRequest.responseText;
+    var prob = fileText.split('\n');
+
+    $("#textFile").val(fileText);
+
+
+    // dog = test2
+    // entity2
+    // prob[0]
+    var fill = Number(prob[0]) * 100;
+
+    var test2 = new Donut({
+      bindTo: '#entity2 > .donut',
+      background: true,
+      thickness: 10,
+      offset: 1,
+      startAngle: 0,
+      endAngle: 360
+    });
+    //var fill = Number(probability[0]) * 100;
+    //var non_fill = 100 - fill;
+
+    d = [fill , 100 - fill];
+    test2.load({data: d});
+
+    $('#entity2 .donut-section').hover(
+      function() {
+        if ($(this).attr('fill') === '#ffffff') {
+          $('#entity2 .entity-lic').html('<span class="dark">73 Available</span> &nbsp; 15%');
+          $('#entity2 .entity-count').html('73');
+        }
+        else {
+          $('#entity2 .entity-lic').html('<span class="dark">427 Used</span> &nbsp; 85%');
+          $('#entity2 .entity-count').html('427');
+        }
+      }, function() {
+        $('#entity2 .entity-lic').html('427 of 500 Allowed');
+        $('#entity2 .entity-count').html('427');
+      }
+  );
+  fill = fill + "%";
+  document.getElementById("dog").innerHTML = fill;
+
+}
+
+
+LoadFile();
 
 
 var test1 = new Donut({
