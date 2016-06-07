@@ -64,9 +64,11 @@
                 $parse_buf = [];
                 if($i > 93){
                     $parse_buf = explode(" ", $line); // I tensorflow/examples/label_image/main.cc:207] dog dir (0): 0.926837
+                    $write_buf = $parse_buf[2] . "\n";
+                    fputs($fpw, $write_buf);
                     if(stristr($parse_buf[5], 'e') === FALSE) { // I tensorflow/examples/label_image/main.cc:207] tiger dir (2): 8.06392e-05
                         if (floatval($parse_buf[5]) < 0.00001){ // I tensorflow/examples/label_image/main.cc:207] rabbit dir (4): 0.000114719
-                            $write_buf = '0.00001';
+                            $write_buf ='0.00001';
                         }
                         else{
                             $write_buf = $parse_buf[5];

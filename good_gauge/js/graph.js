@@ -304,7 +304,16 @@ function onLoadHttpData() {
 
     }
     var fileText = httpRequest.responseText;
-    var prob = fileText.split('\n');
+    var tmp = fileText.split('\n');
+
+    var prob = new Array();
+    var animals = new Array();
+    for(var i = 0 ; i < 10; i++){
+        if(i % 2 == 0)
+            animals[parseInt(i/2)] = tmp[i];
+        else
+            prob[parseInt(i/2)] = tmp[i];
+    }
 
     $("#textFile").val(fileText);
 
@@ -318,6 +327,8 @@ function onLoadHttpData() {
     var n_orig_fill = n_fill;
     fill = roundXL(fill, 1);
     n_fill = roundXL(n_fill, 1);
+    orig_fill = roundXL(orig_fill, 4);
+    n_orig_fill = roundXL(n_orig_fill, 4);
 
 
     var test2 = new Donut({
@@ -340,21 +351,22 @@ function onLoadHttpData() {
     $('#entity2 .donut-section').hover(
       function() {
         if ($(this).attr('fill') === '#ffffff') {
-          $('#entity2 .entity-lic').html('<span class="dark">Not Dog Prob</span> &nbsp; ' + n_orig_fill);
+          $('#entity2 .entity-lic').html('<span class="dark">' + animals[0] + ' Prob</span> &nbsp; ' + n_orig_fill);
           $('#entity2 .entity-count').html(n_fill);
         }
         else {
-          $('#entity2 .entity-lic').html('<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill);
+          $('#entity2 .entity-lic').html('<span class="dark">' + animals[0] + ' Prob</span> &nbsp; ' + orig_fill);
           $('#entity2 .entity-count').html(fill);
         }
       }, function() {
-        $('#entity2 .entity-lic').html('<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill);
+        $('#entity2 .entity-lic').html('<span class="dark">' + animals[0] + ' Prob</span> &nbsp; ' + orig_fill);
         $('#entity2 .entity-count').html(fill);
       }
   );
 
-  document.getElementById("dog-count").innerHTML = fill;
-  document.getElementById("dog-lic").innerHTML = '<span class="dark">Dog Prob</span> &nbsp; ' + orig_fill;
+  document.getElementById("entity2-name").innerHTML = animals[0];
+  document.getElementById("entity2-count").innerHTML = fill;
+  document.getElementById("entity2-lic").innerHTML = '<span class="dark">' + animals[0] + ' Prob</span> &nbsp; ' + orig_fill;
 
 }
 
